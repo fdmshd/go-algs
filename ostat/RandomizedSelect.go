@@ -23,6 +23,7 @@ func RandomizedSelect(arr []int, i int) int {
 	}
 
 }
+
 func randomizedPartition(arr []int) int {
 	r := len(arr) - 1
 	rand.Seed(time.Now().UnixNano())
@@ -30,6 +31,7 @@ func randomizedPartition(arr []int) int {
 	arr[r], arr[i] = arr[i], arr[r]
 	return partition(arr)
 }
+
 func partition(a []int) int {
 	l := 0
 	r := len(a) - 1

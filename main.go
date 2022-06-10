@@ -1,11 +1,11 @@
 package main
 
 import (
-	"algs/ostat"
+	"algs/mymath"
 	"fmt"
 )
 
 func main() {
-	arr := []int{5, 6, 7}
-	fmt.Println(ostat.RandomizedSelect(arr, 3))
+	arr := []int{5, 6, 7, 1}
+	fmt.Println(mymath.Minmax(arr))
 }
