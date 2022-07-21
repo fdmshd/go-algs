@@ -1,12 +1,12 @@
 package main
 
 import (
-	substrings "algs/Substrings"
+	sorts "algs/Sorts"
 	"fmt"
 )
 
 func main() {
-	s := []rune("привет мир")
-	t := []rune("мир")
-	fmt.Println(substrings.BoyerMoore(s, t))
+	arr := []int{8, 5, 4, 2, 1, 3, 6, 9, 7}
+	sorts.CombSort(arr)
+	fmt.Println(arr)
 }

@@ -21,7 +21,7 @@ func (h *Heap) Right(i int) int {
 	return right
 }
 
-func (h *Heap) MaxHeapify(i int) {
+func (h *Heap) maxHeapify(i int) {
 	l := h.Left(i)
 	r := h.Right(i)
 	var largest int
@@ -35,14 +35,14 @@ func (h *Heap) MaxHeapify(i int) {
 	}
 	if largest != i {
 		h.a[i], h.a[largest] = h.a[largest], h.a[i]
-		h.MaxHeapify(largest)
+		h.maxHeapify(largest)
 	}
 }
 
-func (h *Heap) BuildMaxHeap() {
+func (h *Heap) buildMaxHeap() {
 	h.heapSize = len(h.a)
 	for i := len(h.a)/2 - 1; i >= 0; i-- {
-		h.MaxHeapify(i)
+		h.maxHeapify(i)
 	}
 }
 
@@ -50,10 +50,10 @@ func Heapsort(arr []int) {
 	h := &Heap{
 		a: arr,
 	}
-	h.BuildMaxHeap()
+	h.buildMaxHeap()
 	for i := len(arr) - 1; i > 0; i-- {
 		h.a[0], h.a[i] = h.a[i], h.a[0]
 		h.heapSize -= 1
-		h.MaxHeapify(0)
+		h.maxHeapify(0)
 	}
 }

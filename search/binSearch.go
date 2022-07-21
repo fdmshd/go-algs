@@ -1,4 +1,4 @@
-package bs
+package search
 
 func BinSearchRecursion(arr []int, key int, l int, r int) int {
 	if key < arr[l] || key > arr[r] {
