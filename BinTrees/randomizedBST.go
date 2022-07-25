@@ -1,4 +1,4 @@
-package rbst
+package bst
 
 import (
 	"math/rand"

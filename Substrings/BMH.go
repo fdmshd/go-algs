@@ -8,7 +8,7 @@ func CalculeteShifts(t []rune) map[rune]int {
 	return res
 }
 
-func BoyerMoore(str, template []rune) int {
+func BoyerMooreHorspool(str, template []rune) int {
 	shifts := CalculeteShifts(template)
 	m := len(template)
 	n := len(str)

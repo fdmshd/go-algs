@@ -1,12 +1,18 @@
 package main
 
 import (
-	sorts "algs/Sorts"
+	bst "algs/BinTrees"
 	"fmt"
 )
 
 func main() {
-	arr := []int{8, 5, 4, 2, 1, 3, 6, 9, 7}
-	sorts.CombSort(arr)
-	fmt.Println(arr)
+	root := &bst.BSTNode{Val: 1}
+	left := &bst.BSTNode{Val: 0, P: root}
+	right := &bst.BSTNode{Val: 2, P: root}
+	root.Left = left
+	root.Right = right
+	root.Insert(8)
+	root = root.Delete(1)
+	fmt.Println(root)
+
 }
