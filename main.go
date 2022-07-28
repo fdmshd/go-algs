@@ -3,16 +3,19 @@ package main
 import (
 	bst "algs/BinTrees"
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 func main() {
-	root := &bst.BSTNode{Val: 1}
-	left := &bst.BSTNode{Val: 0, P: root}
-	right := &bst.BSTNode{Val: 2, P: root}
-	root.Left = left
-	root.Right = right
-	root.Insert(8)
-	root = root.Delete(1)
+	root := &bst.AVLNode{Val: 5}
+	var input int
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < 10; i++ {
+		input = rand.Intn(20)
+		root = root.Insert(input)
+	}
+
 	fmt.Println(root)
 
 }

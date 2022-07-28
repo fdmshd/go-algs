@@ -31,3 +31,17 @@ func Minmax(arr []int) (int, int) {
 	}
 	return min, max
 }
+
+func ABC(a int) int {
+	if a < 0 {
+		return -a
+	}
+	return a
+}
+
+func Max(a, b int) int {
+	if a < b {
+		return b
+	}
+	return a
+}

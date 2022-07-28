@@ -9,6 +9,14 @@ type BSTNode struct {
 	Left  *BSTNode
 }
 
+func NewNode(parent *BSTNode, val int) *BSTNode {
+	newNode := &BSTNode{Val: val}
+	if parent != nil {
+		newNode.P = parent
+	}
+	return newNode
+}
+
 func (node *BSTNode) InorderTraversal() {
 	if node == nil {
 		return
@@ -118,4 +126,24 @@ func (node *BSTNode) Delete(key int) *BSTNode {
 		}
 	}
 	return node
+}
+
+func (node *BSTNode) RotateLeft() *BSTNode {
+	right := node.Right
+	right.P = nil
+	node.Right = right.Left
+	right.Left.P = node
+	right.Left = node
+	node.P = right
+	return right
+}
+
+func (node *BSTNode) RotateRight() *BSTNode {
+	left := node.Left
+	left.P = nil
+	node.Left = left.Right
+	node.Left.P = node
+	left.Right = node
+	node.P = left
+	return left
 }
