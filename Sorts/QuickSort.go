@@ -5,6 +5,10 @@ import "sync"
 const m = 10
 
 func QuickSort(arr []int, l, r int) {
+	if len(arr) <= m {
+		InsertionSort(arr)
+		return
+	}
 	if l < r {
 		q := partition(arr, l, r)
 

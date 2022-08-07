@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-const n int = 10000000
+const n int = 1000000
 
 func BenchmarkQuickSortPar(b *testing.B) {
 	var arr1 [n]int

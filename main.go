@@ -1,12 +1,13 @@
 package main
 
 import (
-	sorts "algs/Sorts"
+	"algs/trees"
 	"fmt"
 )
 
 func main() {
-	arr := []int{329, 457, 657, 839, 436, 720, 355}
-	sorts.LCD(arr)
-	fmt.Println(arr)
+	arr := []int{0, 9, 5, 7, 3}
+	tree := trees.NewSegmentTree(arr)
+	fmt.Println(tree)
+	fmt.Println(tree.Sum(2, 4))
 }
