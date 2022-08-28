@@ -1,5 +1,7 @@
 package search
 
+// Interpolation search
+// Некорректно работает =( см. тесты
 func InterSearch(arr []int, key int) int {
 	left := 0
 	right := len(arr) - 1
