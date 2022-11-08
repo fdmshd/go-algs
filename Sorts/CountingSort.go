@@ -14,6 +14,8 @@ func CountingSortSimple(arr []int, m int) {
 		}
 	}
 }
+
+// broken
 func CountingSort(arr []int, m int) []int {
 	n := len(arr)
 	b := make([]int, n)

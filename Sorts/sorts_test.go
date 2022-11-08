@@ -1,21 +1,97 @@
 package sorts
 
 import (
-	"reflect"
+	"math/rand"
 	"sort"
 	"testing"
-	"testing/quick"
 )
 
-func TestSort(t *testing.T) {
-	fn := func(arr []int) bool {
-		cp := make([]int, len(arr))
-		copy(cp, arr)
-		sort.Ints(cp)
-		InsertionSort(arr)
-		return reflect.DeepEqual(cp, arr)
+func TestInsertionSort(t *testing.T) {
+	arr := generateArray(100000)
+	InsertionSort(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
 	}
-	if err := quick.Check(fn, &quick.Config{MaxCount: 2000000}); err != nil {
-		t.Error(err)
+}
+
+func TestShellSort(t *testing.T) {
+	arr := generateArray(100000)
+	ShellSort(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
 	}
+}
+
+func TestSelectionSort(t *testing.T) {
+	arr := generateArray(100000)
+	SelectionSort(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
+	}
+}
+
+func TestMergeSort(t *testing.T) {
+	arr := generateArray(100000)
+	arr = MergeSort(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
+	}
+}
+
+func TestLSD(t *testing.T) {
+	arr := generateArray(100)
+	LSD(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
+	}
+}
+
+func TestHeapSort(t *testing.T) {
+	arr := generateArray(100000)
+	HeapSort(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
+	}
+}
+
+func TestCombSort(t *testing.T) {
+	arr := generateArray(100000)
+	CombSort(arr)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("array is not sorted")
+	}
+}
+
+func TestCountingSort(t *testing.T) {
+	m := 100
+	t.Run("CountingSort", func(t *testing.T) {
+		arr := generateArrayMax(1000, m)
+		arr = CountingSort(arr, m)
+		if !sort.IntsAreSorted(arr) {
+			t.Errorf("array is not sorted")
+		}
+	})
+	t.Run("CountingSort", func(t *testing.T) {
+		arr := generateArrayMax(100000, m)
+		CountingSortSimple(arr, m)
+		if !sort.IntsAreSorted(arr) {
+			t.Errorf("array is not sorted")
+		}
+	})
+}
+
+func generateArrayMax(size, max int) []int {
+	arr := make([]int, size)
+	for i := 0; i < size; i++ {
+		arr[i] = rand.Intn(size)
+	}
+	return arr
+}
+
+func generateArray(size int) []int {
+	arr := make([]int, size)
+	for i := 0; i < size; i++ {
+		arr[i] = rand.Int()
+	}
+	return arr
 }

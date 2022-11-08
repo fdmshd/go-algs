@@ -1,13 +1,20 @@
 package sorts
 
-func LCD(arr []int) {
+import "log"
+
+// broken
+func LSD(arr []int) {
 	n := len(arr)
 	m := countDigs(arr[0])
 	newArr := make([]int, n)
 	for j := m; j >= 0; j-- {
 		p := make([]int8, 10)
 		for i := 0; i < n; i++ {
-			p[digit(arr[i], j, m)]++
+			pn := digit(arr[i], j, m)
+			if pn < 0 {
+				log.Printf("arr[%d]=%d, j:%d,m:%d", i, arr[i], j, m)
+			}
+			p[pn]++
 		}
 		for k := 1; k < len(p); k++ {
 			p[k] += p[k-1]

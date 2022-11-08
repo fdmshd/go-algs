@@ -5,6 +5,18 @@ type Heap struct {
 	heapSize int
 }
 
+func HeapSort(arr []int) {
+	h := &Heap{
+		a: arr,
+	}
+	h.buildMaxHeap()
+	for i := len(arr) - 1; i > 0; i-- {
+		h.a[0], h.a[i] = h.a[i], h.a[0]
+		h.heapSize -= 1
+		h.maxHeapify(0)
+	}
+}
+
 func (h *Heap) Parent(i int) int {
 	i = i + 1
 	parent := i/2 - 1
@@ -43,17 +55,5 @@ func (h *Heap) buildMaxHeap() {
 	h.heapSize = len(h.a)
 	for i := len(h.a)/2 - 1; i >= 0; i-- {
 		h.maxHeapify(i)
-	}
-}
-
-func Heapsort(arr []int) {
-	h := &Heap{
-		a: arr,
-	}
-	h.buildMaxHeap()
-	for i := len(arr) - 1; i > 0; i-- {
-		h.a[0], h.a[i] = h.a[i], h.a[0]
-		h.heapSize -= 1
-		h.maxHeapify(0)
 	}
 }

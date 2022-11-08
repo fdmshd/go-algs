@@ -1,5 +1,6 @@
 package sorts
 
+// broken
 func CombSort(arr []int) {
 	n := len(arr)
 	factor := 1.2473309
