@@ -1,7 +1,6 @@
 package mymath
 
-func Minmax(arr []int) (int, int) {
-	var min, max int
+func Minmax(arr []int) (min int, max int) {
 	n := len(arr)
 	i := 0
 	min = arr[i]
@@ -32,15 +31,22 @@ func Minmax(arr []int) (int, int) {
 	return min, max
 }
 
-func ABC(a int) int {
+func ABSInt(a int) int {
 	if a < 0 {
 		return -a
 	}
 	return a
 }
 
-func Max(a, b int) int {
+func MaxInt(a, b int) int {
 	if a < b {
+		return b
+	}
+	return a
+}
+
+func MinInt(a, b int) int {
+	if b < a {
 		return b
 	}
 	return a
