@@ -1,10 +1,19 @@
 package sorts
 
-import "sync"
+import (
+	"runtime"
+	"sync"
+)
 
 const m = 10
 
-func QuickSort(arr []int, l, r int) {
+var maxDepth = runtime.NumCPU() * 2
+
+func QuickSort(arr []int) {
+	quickSort(arr, 0, len(arr)-1)
+}
+
+func quickSort(arr []int, l, r int) {
 	if len(arr) <= m {
 		InsertionSort(arr)
 		return
@@ -12,8 +21,8 @@ func QuickSort(arr []int, l, r int) {
 	if l < r {
 		q := partition(arr, l, r)
 
-		QuickSort(arr, l, q)
-		QuickSort(arr, q+1, r)
+		quickSort(arr, l, q)
+		quickSort(arr, q+1, r)
 	}
 }
 func partition(a []int, l, r int) int {
@@ -35,7 +44,11 @@ func partition(a []int, l, r int) int {
 	return r
 }
 
-func QuickSortPar(arr []int, depth int) {
+func QuickSortPar(arr []int) {
+	quickSortPar(arr, 0)
+}
+
+func quickSortPar(arr []int, depth int) {
 	if len(arr) <= m {
 		InsertionSort(arr)
 		return
@@ -43,9 +56,9 @@ func QuickSortPar(arr []int, depth int) {
 	l := 0
 	r := len(arr) - 1
 	i := partition1(arr[l : r+1])
-	if depth > 8 {
-		QuickSortPar(arr[l:i+1], depth+1)
-		QuickSortPar(arr[i+1:r+1], depth+1)
+	if depth > maxDepth {
+		quickSortPar(arr[l:i+1], depth+1)
+		quickSortPar(arr[i+1:r+1], depth+1)
 		return
 	}
 
@@ -53,12 +66,12 @@ func QuickSortPar(arr []int, depth int) {
 	wg.Add(2)
 
 	go func() {
-		QuickSortPar(arr[l:i+1], depth+1)
+		quickSortPar(arr[l:i+1], depth+1)
 		wg.Done()
 	}()
 
 	go func() {
-		QuickSortPar(arr[i+1:r+1], depth+1)
+		quickSortPar(arr[i+1:r+1], depth+1)
 		wg.Done()
 	}()
 	wg.Wait()

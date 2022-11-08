@@ -13,28 +13,28 @@ func BenchmarkQuickSortPar(b *testing.B) {
 	var arr1 [n]int
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < n; i++ {
-		r := rand.Intn(n)
+		r := rand.Int()
 		arr1[i] = r
 	}
 	b.ResetTimer()
-	QuickSortPar(arr1[:], 0)
+	QuickSortPar(arr1[:])
 }
 func BenchmarkQuickSort(b *testing.B) {
 	var arr2 [n]int
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < n; i++ {
-		r := rand.Intn(n)
+		r := rand.Int()
 		arr2[i] = r
 	}
 	b.ResetTimer()
-	QuickSort(arr2[:], 0, n-1)
+	QuickSort(arr2[:])
 }
 
-func BenchmarkQuickSortS(b *testing.B) {
+func BenchmarkSTDSort(b *testing.B) {
 	var arr2 [n]int
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < n; i++ {
-		r := rand.Intn(n)
+		r := rand.Int()
 		arr2[i] = r
 	}
 	b.ResetTimer()
