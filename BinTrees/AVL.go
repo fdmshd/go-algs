@@ -30,7 +30,7 @@ func (node *AVLNode) FixHeight() {
 	if node.Left != nil {
 		leftH = node.Left.Height
 	}
-	node.Height = mymath.Max(rightH, leftH) + 1
+	node.Height = mymath.MaxInt(rightH, leftH) + 1
 }
 
 func (node *AVLNode) RotateLeft() *AVLNode {
@@ -87,7 +87,7 @@ func (node *AVLNode) Insert(key int) *AVLNode {
 	return node.Balance()
 }
 
-//не лучшая реализация
+// не лучшая реализация
 func (node *AVLNode) Delete(key int) *AVLNode {
 	if key < node.Val {
 		node.Left = node.Left.Delete(key)
